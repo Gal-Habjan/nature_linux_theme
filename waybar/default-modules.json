@@ -1,0 +1,129 @@
+{
+    "custom/steam": {
+        "format": "󰓓",
+        "tooltip": "Open Steam",
+        "on-click": "eww open --toggle steam_popup_closer && eww open --toggle steam_popup"
+    },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "tooltip": false
+    },
+    "custom/discord-msg": {
+        "exec": "/home/gal/scripts/discordNotification.sh",
+        "interval": 1,
+        "format": " 󰙯  {}",
+        "return-type": "json"
+    },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "tooltip": false
+    },
+
+    "custom/spotify": {
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/spotify.sh",
+        "interval": 1,
+        "on-click": "playerctl -p spotify play-pause",
+        "on-scroll-up": "playerctl -p spotify next",
+        "on-scroll-down": "playerctl -p spotify previous"
+    },
+
+    "custom/applauncher": {
+        "format": "〇",
+        "on-click": "pgrep wofi >/dev/null 2>&1 && killall wofi || wofi --show drun --location=topleft -y 15 ",
+        "tooltip": false
+    },
+    "custom/open_lxn": {
+        "format": "LX",
+        "on-click": "/home/gal/.config/waybar/open_lxn.sh",
+        "tooltip": false
+    },
+    "tray": {
+        "spacing": 10,
+        "tooltip": false
+    },
+    "clock": {
+        "format": "󰅐 {:%H:%M:%S %a %d.%m.%Y} ",
+        "tooltip": false,
+        "interval": 1,
+        "on-click": "gsimplecal"
+    },
+    "network": {
+        "format-wifi": " {bandwidthDownBits}",
+        "format-ethernet": "󰈀 {bandwidthDownBits}",
+        "format-disconnected": "󰤮 No Network",
+        "interval": 5,
+        "tooltip": false,
+        "on-click": "nm-applet"
+    },
+    "pulseaudio": {
+        "scroll-step": 5,
+        "max-volume": 150,
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-icons": ["", "", " "],
+        "nospacing": 1,
+        "format-muted": " ",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pgrep pavucontrol >/dev/null 2>&1 && killall pavucontrol || pavucontrol ",
+        "tooltip": false
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+    "custom/power_mode": {
+        "exec": "~/.config/waybar/scripts/power_mode.sh",
+        "interval": 5,
+        "return-type": "json",
+        "tooltip": true
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄{capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-full": "󱈑 {capacity}%",
+        "format-icons": ["󱊡", "󱊢", "󱊣"]
+    },
+    "custom/shutdown": {
+        "exec": "echo '⏻'",
+        "on-click": "systemctl poweroff",
+        "format": "{}",
+        "tooltip": "Shutdown the system"
+    },
+    "custom/restart": {
+        "exec": "echo ''",
+        "on-click": "systemctl reboot",
+        "format": "{}",
+        "tooltip": "Restart the system"
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 25,
+        "spacing": 3,
+        "on-click-middle": "close",
+        "tooltip-format": "{title}",
+        "ignore-list": [],
+        "on-click": "activate"
+    }
+}

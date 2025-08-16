@@ -1,0 +1,116 @@
+(include "eww_vars.yuck")
+
+
+
+(defwidget steam_game_list []
+  (box :orientation "vertical"
+       :space-evenly false
+    (for game in steam_games
+      (button
+        :onclick {"steam steam://rungameid/" + game.id+ "; eww close steam_popup ; eww close steam_popup_closer"}
+        :class "game-button"
+        (box :orientation "horizontal" :spacing 20 :valign "center" :space-evenly "false"
+             (image :path {game.icon}
+                    :image-height "36"
+                    :class "game-icon"
+                    :halign "start"
+                    :preserve-aspect-ratio true)
+             (label :text {game.name}
+                    :halign "start"))
+        
+        ))))
+
+(defwidget closer [window]
+  (eventbox :onclick "eww close ${window} && eww close ${window}_closer"))
+
+(defwidget spotify [] 
+  (box :class "dockbox"
+    (box :orientation "h" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
+      (box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('${COVER}');")
+      (box :class "musicbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false"
+        (label :class "song" :halign "start" :wrap "false" :limit-width 30 :text SONG)
+        (label :class "artist" :halign "start" :wrap "false" :limit-width 20 :text ARTIST)))
+    (box :class "musicbuttons" :orientation "h" :spacing 10 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
+      (button :style "background-image: url('images/icons/music/previous-button.png');" :class "trackbutton" :onclick "scripts/spotify/spotify-previous.sh")
+      (button :style "background-image: url('${STATUS}');" :class "playbutton" :onclick "scripts/spotify/spotify-pause.sh")
+      (button :style "background-image: url('images/icons/music/next-button.png');" :class "trackbutton" :onclick "scripts/spotify/spotify-next.sh"))))
+
+
+(defwidget ram []
+
+  (box
+    :orientation "v"
+    :class "sys_stats"
+    :halign "center"
+    :valign "end"
+    :space-evenly "false"
+    (image
+      :path {RAM.image_path}
+      :image-height 300
+      :keep-aspect true
+      )
+    (label
+      :text "RAM ${RAM.used_gb}/ ${RAM.total_gb} GB"
+      :class "ram_text"))
+)
+(defwidget cpu []
+
+  (box
+    :orientation "v"
+    :class "sys_stats"
+    :halign "center"
+    :valign "end"
+    :space-evenly "false"
+    (image
+      :path {CPU.image_path}
+      :image-height 300
+      :keep-aspect true
+      )
+    (label
+      :text "CPU USAGE  ${CPU.cpu_usage_percent}%"
+      :class "cpu_text"))
+)
+
+(defwidget storage [mount]
+  (box
+    :orientation "v"
+    
+    :halign "center"
+    :valign "end"
+    :space-evenly "false"
+    (image
+      :path {mount.image_path}
+      :image-width 126
+      :keep-aspect true)
+    (label
+      :text "${mount.mountpoint}"
+      )
+    (label
+      :text "${mount.available}GB"
+      )
+        ))
+
+(defwidget storages []
+  (box :orientation "h" :space-evenly "true"
+  :class "sys_stats"
+    (for d in STORAGE
+      (storage :mount d))))
+
+(defwidget system []
+  (box
+    :orientation "v"
+    :space-evenly "false"
+    :halign "center"
+    :valign "end"
+    :spacing 10
+
+    ;; first row: CPU | RAM
+    (box
+      :orientation "h"
+      :space-evenly "true"
+      :spacing 10
+      (cpu)
+      (ram))
+
+    ;; second row: storage list
+    (storages)))

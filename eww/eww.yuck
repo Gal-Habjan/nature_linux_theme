@@ -1,0 +1,90 @@
+(include "eww_widgets.yuck")
+
+
+
+(defwindow steam_popup
+  :monitor 0
+  :namespace "eww"
+  :onopen "steam"
+  :class steam_popup
+  :geometry (geometry
+    :x "20"
+    :y "20"
+    :width "400"
+    :height "600"
+    :anchor "top left")
+  :stacking "fg"
+  :layer "overlay"
+  
+  
+  
+    (scroll
+    :vscroll true
+    (steam_game_list)))
+
+
+(defwindow steam_popup_closer
+  :monitor 0
+  :geometry (geometry :width "100%" :height "100%")
+  :stacking "fg"
+  
+  :layer "overlay"
+  :focusable false
+  (closer :window "steam_popup"))
+
+
+(defwindow cpu_win
+  :monitor 0
+  :geometry (geometry
+              :x "5px"
+              :y "5px"
+ 
+              :anchor "top left")
+  :stacking "bg"
+  :exclusive false
+  (cpu))
+
+  (defwindow ram_win
+  :monitor 0
+  :geometry (geometry
+              :x "210px"
+              :y "5px"
+ 
+              :anchor "top left")
+  :stacking "bg"
+  :exclusive false
+  (ram))
+
+
+    (defwindow storages_win
+  :monitor 0
+  :geometry (geometry
+              :x "5"
+              :y "355px"
+ 
+              :anchor "top left")
+  :stacking "bg"
+  :exclusive false
+  (storages))
+
+(defwindow system_win
+  :monitor 0
+  :geometry (geometry
+              :x "5"
+              :y "5"
+ 
+              :anchor "top left")
+  :stacking "bg"
+  :exclusive false
+  (system))
+
+  (defwindow system_win1
+  :monitor 1
+  :geometry (geometry
+              :x "5"
+              :y "5"
+ 
+              :anchor "top left")
+  :stacking "bg"
+  :exclusive false
+  (system))

@@ -1,0 +1,25 @@
+{
+    "name": "taskbar",
+    "layer": "top",
+    "position": "bottom",
+    "height": 5,
+    "width": 2,
+    "modules-left": [],
+    "include": [
+        "~/.config/waybar/default-modules.json"
+    ],
+    "modules-center": [
+        "wlr/taskbar"
+    ],
+    "margin-bottom": "5",
+    "margin-top": "3",
+    "spacing": "5",
+    "hyprland/window": {
+        "max-length": 50
+    },
+    "custom/applauncher": {
+        "format": "〇",
+        "on-click": "pgrep wofi >/dev/null 2>&1 && killall wofi || wofi --show drun --location=topleft -y 15 ",
+        "tooltip": false
+    }
+}

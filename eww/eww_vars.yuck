@@ -1,0 +1,15 @@
+; sup cuh
+
+(defpoll DAY :interval "1s" '~/.config/eww/scripts/day_format.sh')
+(defpoll MONTH :interval "1s" '~/.config/eww/scripts/month_format.sh')
+(defpoll YEAR :interval "1s" '~/.config/eww/scripts/year_format.sh')
+(defpoll steam_games :interval "60s" "~/.config/eww/scripts/getSteamGames.sh")
+
+(defpoll SONG :interval "1s" `scripts/spotify/spotify_song.sh`)
+(defpoll ARTIST :interval "1s" `scripts/spotify/spotify_artist.sh`)
+(defpoll COVER :interval "1s" `scripts/spotify/spotify_artwork.sh`)
+(defpoll STATUS :interval "1s" `scripts/spotify/spotify_status.sh`)
+
+(defpoll STORAGE :interval "1s" `scripts/system_data/getStorage.sh`)
+(defpoll RAM :interval "1s" `scripts/system_data/getRam.sh`)
+(defpoll CPU :interval "1s" `scripts/system_data/getCpu.sh`)
