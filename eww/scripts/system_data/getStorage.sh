@@ -21,9 +21,9 @@ df -B1 --output=source,size,used,avail,target | tail -n +2 | while read fs size 
             fi
             image="${images[$imgIndex]}"
 
-            available_gb=$(($avail/1024/1024))
-            total_gb=$(($size/1024/1024))
-            used_gb=$(($used/1024/1024))
+            available_gb=$(($avail/1024/1024/1024))
+            total_gb=$(($size/1024/1024/1024))
+            used_gb=$(($used/1024/1024/1024))
             jq --arg fs "$fs" \
                --arg mount "$mount" \
                --arg image "$image" \

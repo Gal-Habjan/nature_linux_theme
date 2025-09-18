@@ -26,10 +26,10 @@
         "modules-right": [
             "custom/discord-msg",
             "custom/power_mode",
-            "network",
             "battery",
             "pulseaudio",
             "backlight",
+            "network",
             "tray",
             "clock",
             "custom/restart",
@@ -62,10 +62,10 @@
         "modules-right": [
             "custom/discord-msg",
             "custom/power_mode",
-            "network",
             "battery",
             "pulseaudio",
             "backlight",
+            "network",
             "tray",
             "clock",
             "custom/restart",

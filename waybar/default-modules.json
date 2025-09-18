@@ -51,8 +51,8 @@
         "on-click": "gsimplecal"
     },
     "network": {
-        "format-wifi": " {bandwidthDownBits}",
-        "format-ethernet": "󰈀 {bandwidthDownBits}",
+        "format-wifi": "   {bandwidthDownBits}",
+        "format-ethernet": "󰈀   {bandwidthDownBits}",
         "format-disconnected": "󰤮 No Network",
         "interval": 5,
         "tooltip": false,
@@ -63,7 +63,7 @@
         "max-volume": 150,
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon} {volume}%",
-        "format-icons": ["", "", " "],
+        "format-icons": [" ", " ", " "],
         "nospacing": 1,
         "format-muted": " ",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
@@ -95,27 +95,33 @@
         },
         "format": "{icon} {capacity}%",
         "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󰂄{capacity}%",
-        "format-alt": "{icon} {time}",
+        "format-plugged": "󰂄 {capacity}%",
+
         "format-full": "󱈑 {capacity}%",
-        "format-icons": ["󱊡", "󱊢", "󱊣"]
+        "format-icons": ["󱊡", "󱊢", "󱊣"],
+        "events": {
+            "on-discharging-warning": "notify-send -u normal 'Low Battery'",
+            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
+            "on-charging-100": "notify-send -u normal 'Battery Full!'"
+        },
+        "interval": 5
     },
     "custom/shutdown": {
         "exec": "echo '⏻'",
-        "on-click": "systemctl poweroff",
+        "on-click": "zenity --question --text='Shutdown?' && systemctl poweroff",
         "format": "{}",
         "tooltip": "Shutdown the system"
     },
     "custom/restart": {
         "exec": "echo ''",
-        "on-click": "systemctl reboot",
+        "on-click": "zenity --question --text='Reboot?' && systemctl reboot",
         "format": "{}",
         "tooltip": "Restart the system"
     },
     "backlight": {
         "device": "intel_backlight",
         "format": "{percent}% {icon}",
-        "format-icons": ["", ""]
+        "format-icons": ["", "", ""]
     },
     "wlr/taskbar": {
         "format": "{icon}",
